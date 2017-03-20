@@ -4,9 +4,6 @@ import android.content.res.AssetManager;
 import android.location.Location;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -22,7 +19,7 @@ public class MapDictionary extends Dictionary {
         mLocation = location;
     }
     private Location mLocation;
-    protected Map<Float, String> mSortedResults = new TreeMap<Float, String>();
+    private Map<Float, String> mSortedResults = new TreeMap<Float, String>();
 
     @Override
     protected void prepare() {
@@ -52,7 +49,7 @@ public class MapDictionary extends Dictionary {
 
     @Override
     protected void conclude() {
-        String resultStr = new String();
+        String resultStr = "";
         int counter = 0;
         for (Map.Entry<Float, String> point : mSortedResults.entrySet()) {
             ++counter;
