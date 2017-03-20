@@ -53,9 +53,14 @@ public class MapDictionary extends Dictionary {
     @Override
     protected void conclude() {
         String resultStr = new String();
+        int counter = 0;
         for (Map.Entry<Float, String> point : mSortedResults.entrySet()) {
+            ++counter;
             resultStr += point.getValue() + " (" + point.getKey().intValue() + "m)\n";
+            if (counter >= 3000) {
+                break;
+            }
         }
-        m_results.setText(m_results.getText() + resultStr);
+        mResults.setText("Result: (" + counter + ")\n" + resultStr);
     }
 }

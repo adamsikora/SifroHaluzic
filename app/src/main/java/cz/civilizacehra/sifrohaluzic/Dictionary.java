@@ -6,6 +6,8 @@ import android.widget.TextView;
 import java.io.InputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,9 +17,9 @@ import java.util.regex.Pattern;
  */
 public class Dictionary {
     public Dictionary(AssetManager manager, String filename, TextView results) {
-        m_manager = manager;
-        m_filename = filename;
-        m_results = results;
+        mManager = manager;
+        mFilename = filename;
+        mResults = results;
     }
     public void findResults(String input, boolean subset, boolean exact, boolean superset, boolean regexp, int minLength, int maxLength) {
 
@@ -39,7 +41,7 @@ public class Dictionary {
 
 
         try {
-            InputStream inputStream = m_manager.open(m_filename);
+            InputStream inputStream = mManager.open(mFilename);
             BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
             String line = null;
 
@@ -96,11 +98,24 @@ public class Dictionary {
     }
     protected void prepare() {};
     protected void matched(String match) {
-        m_results.setText(m_results.getText() + match + "\n");
+        mList.add(match);
     }
-    protected void conclude() {};
+    protected void conclude() {
+        String resultStr = new String();
+        int counter = 0;
+        for (String point : mList) {
+            ++counter;
+            resultStr += point + "\n";
+            if (counter >= 3000) {
+                break;
+            }
+        }
+        mResults.setText("Result: (" + counter + ")\n" + resultStr);
+    };
 
-    protected AssetManager m_manager;
-    protected String m_filename;
-    protected TextView m_results;
+    protected ArrayList<String> mList = new ArrayList<>();
+
+    protected AssetManager mManager;
+    protected String mFilename;
+    protected TextView mResults;
 }

@@ -1,8 +1,10 @@
 package cz.civilizacehra.sifrohaluzic;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -21,6 +23,8 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.regex.PatternSyntaxException;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
 
@@ -65,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         pragueMap = new MapDictionary(getApplicationContext().getAssets(), "map_prague.sifrohal", results);
 
         mLocationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        final AlertDialog.Builder builder = new  AlertDialog.Builder(this);
 
         inputBox.requestFocus();
 
@@ -114,28 +119,50 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     int checkedDictionary = source.getCheckedRadioButtonId();
                     String input = inputBox.getText().toString().toLowerCase();
 
-                    if (checkedDictionary == R.id.enRadioBtn) {
-                        enDict.findResults(input, subset, exact, superset, regexp, minLength, maxLength);
-                    } else if (checkedDictionary == R.id.czPJRadioBtn) {
-                        czPJDict.findResults(input, subset, exact, superset, regexp, minLength, maxLength);
-                    } else if (checkedDictionary == R.id.czRadioBtn) {
-                        czDict.findResults(input, subset, exact, superset, regexp, minLength, maxLength);
-                    } else if (checkedDictionary == R.id.czBigRadioBtn) {
-                        czBigDict.findResults(input, subset, exact, superset, regexp, minLength, maxLength);
-                    } else if (checkedDictionary == R.id.mapBrnoRadioBtn) {
-                        if (mLocation == null) {
-                            acquireLocation();
+                    try {
+                        if (checkedDictionary == R.id.enRadioBtn) {
+                            enDict.findResults(input, subset, exact, superset, regexp, minLength, maxLength);
+                        } else if (checkedDictionary == R.id.czPJRadioBtn) {
+                            czPJDict.findResults(input, subset, exact, superset, regexp, minLength, maxLength);
+                        } else if (checkedDictionary == R.id.czRadioBtn) {
+                            czDict.findResults(input, subset, exact, superset, regexp, minLength, maxLength);
+                        } else if (checkedDictionary == R.id.czBigRadioBtn) {
+                            czBigDict.findResults(input, subset, exact, superset, regexp, minLength, maxLength);
+                        } else if (checkedDictionary == R.id.mapBrnoRadioBtn) {
+                            if (mLocation == null) {
+                                acquireLocation();
+                            }
+                            brnoMap.setLocation(mLocation);
+                            brnoMap.findResults(input, subset, exact, superset, regexp, minLength, maxLength);
+                        } else if (checkedDictionary == R.id.mapPragueRadioBtn) {
+                            if (mLocation == null) {
+                                acquireLocation();
+                            }
+                            pragueMap.setLocation(mLocation);
+                            pragueMap.findResults(input, subset, exact, superset, regexp, minLength, maxLength);
+                        } else {
+                            assert (false);
                         }
-                        brnoMap.setLocation(mLocation);
-                        brnoMap.findResults(input, subset, exact, superset, regexp, minLength, maxLength);
-                    } else if (checkedDictionary == R.id.mapPragueRadioBtn) {
-                        if (mLocation == null) {
-                            acquireLocation();
-                        }
-                        pragueMap.setLocation(mLocation);
-                        pragueMap.findResults(input, subset, exact, superset, regexp, minLength, maxLength);
-                    } else {
-                        assert (false);
+                    } catch (PatternSyntaxException e) {
+                        builder
+                            .setTitle("Invalid regex syntax")
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // continue with delete
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                    } catch (Throwable e) {
+                        builder
+                            .setTitle("Unknown error")
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // continue with delete
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
                     }
                     saveRadioButtons();
                 }
