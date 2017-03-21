@@ -94,7 +94,9 @@ public class Dictionary {
 
         }
     }
-    protected void prepare() {};
+    protected void prepare() {
+        mList.clear();
+    };
     protected void matched(String match) {
         mList.add(match);
     }
