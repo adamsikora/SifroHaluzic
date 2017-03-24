@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     TextView results;
     ScrollView scrollView;
     RadioGroup mode, source;
+    CheckBox svjz;
 
     Dictionary enDict, czPJDict, czDict, czBigDict;
     MapDictionary pragueMap, brnoMap;
@@ -58,7 +60,34 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         mode = (RadioGroup) findViewById(R.id.modeRadioGrp);
         source = (RadioGroup) findViewById(R.id.sourceRadioGrp);
+        svjz = (CheckBox) findViewById(R.id.svjzCheckBox);
+
+        source.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup arg0, int id) {
+                switch (id) {
+                    case -1:
+                        break;
+                    case R.id.mapBrnoRadioBtn:
+                    case R.id.mapPragueRadioBtn:
+                        if (mLocation == null) {
+                            acquireLocation();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                refreshSvjz(id, mode.getCheckedRadioButtonId());
+            }
+        });
+
+        mode.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup arg0, int id) {
+                refreshSvjz(source.getCheckedRadioButtonId(), id);
+            }
+        });
+
         loadRadioButtons();
+        refreshSvjz(source.getCheckedRadioButtonId(), mode.getCheckedRadioButtonId());
 
         enDict = new Dictionary(getApplicationContext().getAssets(), "en.canon", results);
         czPJDict = new Dictionary(getApplicationContext().getAssets(), "podst_jm_cz.canon", results);
@@ -71,25 +100,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         final AlertDialog.Builder builder = new  AlertDialog.Builder(this);
 
         inputBox.requestFocus();
-
-        if (source != null) {
-            source.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                public void onCheckedChanged(RadioGroup arg0, int id) {
-                    switch (id) {
-                        case -1:
-                            break;
-                        case R.id.mapBrnoRadioBtn:
-                        case R.id.mapPragueRadioBtn:
-                            if (mLocation == null) {
-                                acquireLocation();
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            });
-        }
 
         if (goBtn != null) {
             goBtn.setOnClickListener(new View.OnClickListener() {
@@ -131,12 +141,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                             if (mLocation == null) {
                                 acquireLocation();
                             }
+                            brnoMap.setSvjz(svjz.isEnabled() && svjz.isChecked());
                             brnoMap.setLocation(mLocation);
                             brnoMap.findResults(input, subset, exact, superset, regexp, minLength, maxLength);
                         } else if (checkedDictionary == R.id.mapPragueRadioBtn) {
                             if (mLocation == null) {
                                 acquireLocation();
                             }
+                            pragueMap.setSvjz(svjz.isEnabled() && svjz.isChecked());
                             pragueMap.setLocation(mLocation);
                             pragueMap.findResults(input, subset, exact, superset, regexp, minLength, maxLength);
                         } else {
@@ -256,5 +268,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mode.check(sharedPreferences.getInt("modeRadioButton", mode.getCheckedRadioButtonId()));
         source.check(sharedPreferences.getInt("sourceRadioButton", source.getCheckedRadioButtonId()));
+    }
+
+    public void refreshSvjz(int sourceId, int modeId) {
+        svjz.setEnabled((sourceId == R.id.mapBrnoRadioBtn || sourceId == R.id.mapPragueRadioBtn) &&
+                        (modeId == R.id.exactRadioBtn || modeId == R.id.supersetRadioBtn)
+        );
     }
 }

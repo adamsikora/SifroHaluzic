@@ -13,15 +13,23 @@ import java.util.regex.Pattern;
 /**
  * Created by Adam on 11. 4. 2016.
  */
-public class Dictionary {
-    public Dictionary(AssetManager manager, String filename, TextView results) {
+class Dictionary {
+    Dictionary(AssetManager manager, String filename, TextView results) {
         mManager = manager;
         mFilename = filename;
         mResults = results;
     }
+
     public void findResults(String input, boolean subset, boolean exact, boolean superset, boolean regexp, int minLength, int maxLength) {
 
         prepare();
+
+        findResults_impl(input, subset, exact, superset, regexp, minLength, maxLength);
+
+        conclude();
+    }
+
+    void findResults_impl(String input, boolean subset, boolean exact, boolean superset, boolean regexp, int minLength, int maxLength) {
 
         Pattern pattern;
         Matcher matcher;
@@ -89,17 +97,19 @@ public class Dictionary {
                     }
                 }
             }
-            conclude();
         } catch (java.io.IOException e) {
 
         }
     }
+
     protected void prepare() {
         mList.clear();
     };
+
     protected void matched(String match) {
         mList.add(match);
     }
+
     protected void conclude() {
         String resultStr = "";
         int counter = 0;
@@ -113,9 +123,9 @@ public class Dictionary {
         mResults.setText("Result: (" + counter + ")\n" + resultStr);
     };
 
-    protected ArrayList<String> mList = new ArrayList<>();
+    private ArrayList<String> mList = new ArrayList<>();
 
-    protected AssetManager mManager;
-    protected String mFilename;
-    protected TextView mResults;
+    private AssetManager mManager;
+    private String mFilename;
+    TextView mResults;
 }
