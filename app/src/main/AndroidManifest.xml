@@ -23,7 +23,8 @@
         <activity
             android:name=".DebinarizatorActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".PrincipTrainerActivity"></activity>
+        <activity android:name=".PrincipTrainerActivity" />
+        <activity android:name=".MrizkoDrticActivity"></activity>
     </application>
 
 </manifest>

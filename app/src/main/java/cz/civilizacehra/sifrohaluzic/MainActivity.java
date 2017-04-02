@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         mrizkodrtic.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent myIntent = new Intent(MainActivity.this, DebinarizatorActivity.class);
+                Intent myIntent = new Intent(MainActivity.this, MrizkoDrticActivity.class);
                 MainActivity.this.startActivity(myIntent);
             }
         });
