@@ -8,4 +8,25 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="cube_style">
+        <item name="android:layout_width">@dimen/cube_size</item>
+        <item name="android:layout_height">@dimen/cube_size</item>
+        <item name="android:src">@android:drawable/ic_menu_help</item>
+    </style>
+
+    <style name="result_style">
+        <item name="android:layout_width">@dimen/cube_size</item>
+        <item name="android:layout_height">@dimen/cube_size</item>
+        <item name="android:text">A</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:layout_marginBottom">1sp</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="result_type_style">
+        <item name="android:layout_width">@dimen/half_cube_size</item>
+        <item name="android:layout_height">@dimen/cube_size</item>
+    </style>
+
 </resources>

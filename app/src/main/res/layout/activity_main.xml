@@ -9,186 +9,37 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="cz.civilizacehra.sifrohaluzic.MainActivity">
 
-    <RelativeLayout
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:id="@+id/relativeLayout">
-
-        <EditText
-            android:id="@+id/inputEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/sourceRadioGrp"
-            android:layout_toStartOf="@+id/sourceRadioGrp"
-            android:clickable="false"
-            android:editable="true"
-            android:enabled="true"
-            android:hint="Known Characters" />
-
-        <EditText
-            android:id="@+id/minEditText"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/inputEditText"
-            android:layout_toEndOf="@+id/modeRadioGrp"
-            android:layout_toRightOf="@+id/modeRadioGrp"
-            android:layout_weight="1"
-            android:editable="true"
-            android:ems="10"
-            android:enabled="true"
-            android:hint="Min Length"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/maxEditText"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/minEditText"
-            android:layout_alignStart="@+id/minEditText"
-            android:layout_below="@+id/minEditText"
-            android:editable="true"
-            android:ems="10"
-            android:enabled="true"
-            android:hint="Max Length"
-            android:inputType="number" />
-
-        <Button
-            android:id="@+id/GoBtn"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/maxEditText"
-            android:layout_alignLeft="@+id/maxEditText"
-            android:layout_alignRight="@+id/maxEditText"
-            android:layout_alignStart="@+id/maxEditText"
-            android:layout_below="@+id/maxEditText"
-            android:layout_toStartOf="@+id/sourceRadioGrp"
-            android:text="Go!" />
-
-        <RadioGroup
-            android:id="@+id/modeRadioGrp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/inputEditText"
-            android:clickable="false"
-            android:contextClickable="false"
-            android:paddingEnd="20dp">
-
-            <RadioButton
-                android:id="@+id/subsetRadioBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Subset" />
-
-            <RadioButton
-                android:id="@+id/exactRadioBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="Exact" />
-
-            <RadioButton
-                android:id="@+id/supersetRadioBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="Superset" />
-
-            <RadioButton
-                android:id="@+id/regExpRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="RegExp" />
-
-        </RadioGroup>
-
-        <RadioGroup
-            android:id="@+id/sourceRadioGrp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true">
-
-            <RadioButton
-                android:id="@+id/enRadioBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="en" />
-
-            <RadioButton
-                android:id="@+id/czPJRadioBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="false"
-                android:text="cz (p.j.)" />
-
-            <RadioButton
-                android:id="@+id/czRadioBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="cz" />
-
-            <RadioButton
-                android:id="@+id/czBigRadioBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="cz (big)" />
-
-            <RadioButton
-                android:id="@+id/mapPragueRadioBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Prague" />
-
-            <RadioButton
-                android:id="@+id/mapBrnoRadioBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Brno" />
-
-        </RadioGroup>
-
-        <CheckBox
-            android:id="@+id/svjzCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/inputEditText"
-            android:layout_toEndOf="@+id/minEditText"
-            android:layout_toRightOf="@+id/minEditText"
-            android:text="SVJZ" />
-
-    </RelativeLayout>
-
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
-        android:scrollbars="vertical"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_height="match_parent"
+        android:columnCount="3">
 
         <TextView
-            android:id="@+id/resultTextView"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1.0"
-            android:text="Result:\n" />
+            android:id="@+id/Presmyslovnik"
+            android:layout_width="@dimen/main_selection_size"
+            android:layout_height="@dimen/main_selection_size"
+            android:clickable="true"
+            android:text="@string/presmyslovnik" />
 
-    </ScrollView>
+        <TextView
+            android:id="@+id/Debinarizator"
+            android:layout_width="@dimen/main_selection_size"
+            android:layout_height="@dimen/main_selection_size"
+            android:clickable="true"
+            android:text="@string/debinarizator" />
 
+        <TextView
+            android:id="@+id/MrizkoDrtic"
+            android:layout_width="@dimen/main_selection_size"
+            android:layout_height="@dimen/main_selection_size"
+            android:clickable="true"
+            android:text="@string/mrizkodrtic" />
+
+        <TextView
+            android:id="@+id/PrincipTrainer"
+            android:layout_width="@dimen/main_selection_size"
+            android:layout_height="@dimen/main_selection_size"
+            android:clickable="true"
+            android:text="@string/principtrainer" />
+    </GridLayout>
 </RelativeLayout>

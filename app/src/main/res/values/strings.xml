@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Sifro Haluzic</string>
+    <string name="app_name">Šifro Haluzič</string>
+
+    <string name="presmyslovnik">Přesmyslovník</string>
+    <string name="debinarizator">Debinarizátor</string>
+    <string name="mrizkodrtic">Mřížko Drtič</string>
+    <string name="principtrainer">Princip Trainer</string>
 </resources>
