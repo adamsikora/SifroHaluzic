@@ -3,12 +3,12 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Adam\.android\build-cache\d876f0de03d08e5ccf0d162d5c6ff600e1d724ce\output\jars\libs\internal_impl-23.3.0.jar"
+        jar="C:\Users\Adam\AndroidStudioProjects\SifroHaluzic\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
-        <dex dex="C:\Users\Adam\AndroidStudioProjects\SifroHaluzic\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_5b86803e6c60ae2b2d00c4bb1c5e90599663efd0\classes.dex" />
+        sha1="9d5598c9bd98a2f65fab7c3dbd75f5d47c6157b8">
+        <dex dex="C:\Users\Adam\AndroidStudioProjects\SifroHaluzic\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_ee6eb58e5426e46fb847c3eadaf170ae993f5dff\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -18,51 +18,6 @@
         revision="25.0.0"
         sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
         <dex dex="C:\Users\Adam\AndroidStudioProjects\SifroHaluzic\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_ae405d4d8888c392ec7be80dbf66aafe28052281\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Adam\.android\build-cache\3c19c0875092f82756fda75d22a1d3dfb8ef77b4\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
-        <dex dex="C:\Users\Adam\AndroidStudioProjects\SifroHaluzic\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3ee86ec796dbdaabe132549769688eae0bd3d717\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Adam\.android\build-cache\d876f0de03d08e5ccf0d162d5c6ff600e1d724ce\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
-        <dex dex="C:\Users\Adam\AndroidStudioProjects\SifroHaluzic\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f85a5994099e31181cc8655b047f62b79856a73b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Adam\.android\build-cache\09891c44838d4fff2b9005d5334f4a4bf3d6347a\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
-        <dex dex="C:\Users\Adam\AndroidStudioProjects\SifroHaluzic\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0d7753d4cfd7d4a0986791ccd3a0999095fe7e3b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Adam\AndroidStudioProjects\SifroHaluzic\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2732916c83aa48569fae7da3e31e81f75eba1886">
-        <dex dex="C:\Users\Adam\AndroidStudioProjects\SifroHaluzic\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_ee6eb58e5426e46fb847c3eadaf170ae993f5dff\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Adam\.android\build-cache\d9dbc3fe2f4a41b6eaa67584d9812444a363b57c\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
-        <dex dex="C:\Users\Adam\AndroidStudioProjects\SifroHaluzic\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_567248483b6edfcbebedc5c42cf38c31ad824220\classes.dex" />
     </item>
 
 </items>

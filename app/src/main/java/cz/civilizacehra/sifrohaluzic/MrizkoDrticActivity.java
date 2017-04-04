@@ -26,6 +26,12 @@ public class MrizkoDrticActivity extends AppCompatActivity {
 
     TrieMap mTrieMap;
 
+    static {
+        System.loadLibrary("MrizkoDrtic");
+    }
+
+    private native String grindGrid();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,39 +71,14 @@ public class MrizkoDrticActivity extends AppCompatActivity {
 
                     String input = inputBox.getText().toString().replaceAll("[^A-Za-z0-9_]", "").toLowerCase();
 
-                    if (!isPerfectSquare(input.length())) {
-                        results.setTextColor(0xFFFF0000);
-                        results.setText("Wrong grid input!!!");
-                    } else {
-                        int score = getScore(input);
-
-                        results.setText(results.getText().toString() + score);
+                    try {
+                        String solutions = grindGrid();
+                        results.setText(results.getText().toString() + solutions);
+                    } catch (Throwable e) {
+                        String solutions = "";
                     }
                 }
             });
         }
-    }
-
-    private int getScore(String input) {
-        int result = 0;
-
-        for (int i = 0; i < input.length(); ++i) {
-            for (int j = i + 1; j <= input.length(); ++j) {
-                if (mTrieMap.get(input.substring(i, j)) != null) {
-                    result += j - i;
-                }
-            }
-        }
-
-        return result;
-    }
-
-    private boolean isPerfectSquare(long n)
-    {
-        if (n < 0)
-            return false;
-
-        long tst = (long)(Math.sqrt(n));
-        return tst*tst == n;
     }
 }
