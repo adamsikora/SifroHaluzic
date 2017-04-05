@@ -7,7 +7,7 @@
 
 #include "MrizkoDrtic.h"
 
-int getScore(const std::string& s)
+int DrtMrizku::getScore(const std::string& s)
 {
 	int result = 0;
 	char start[256];
@@ -26,7 +26,7 @@ int getScore(const std::string& s)
 	return result;
 }
 
-bool isPerfectSquare(int n)
+bool DrtMrizku::isPerfectSquare(int n)
 {
 	if (n < 0)
 		return false;
@@ -34,21 +34,8 @@ bool isPerfectSquare(int n)
 	return n == root * root;
 }
 
-void initialize()
+std::string DrtMrizku::drtMrizku(std::string input)
 {
-	std::string w = "ab";
-	char s[256];
-	memcpy(s, w.c_str(), w.size());
-	root.insert(s, s + w.size());
-
-	initialized = true;
-}
-
-std::string drtMrizku(std::string input)
-{
-	if (!initialized) {
-		initialize();
-	}
 	int size = input.size();
 	if (!isPerfectSquare(size)) {
 		return "wrong input size\n";

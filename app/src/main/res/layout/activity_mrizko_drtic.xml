@@ -25,7 +25,8 @@
             android:clickable="false"
             android:editable="true"
             android:enabled="true"
-            android:hint="Zadej mrizku..." />
+            android:hint="Zadej mrizku..."
+            tools:text="helsitkeoonvnevizraecokhomovslyctrba" />
 
         <Button
             android:id="@+id/GoBtn"

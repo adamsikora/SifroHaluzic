@@ -2,6 +2,7 @@ package cz.civilizacehra.sifrohaluzic;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,13 +25,14 @@ public class MrizkoDrticActivity extends AppCompatActivity {
 
     ColorStateList textColors;
 
-    TrieMap mTrieMap;
+    boolean isTrieInitialized;
 
     static {
         System.loadLibrary("MrizkoDrtic");
     }
 
-    private native String grindGrid();
+    private native String grindGrid(String str);
+    private native void initializeTrie(Object mgr);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,6 @@ public class MrizkoDrticActivity extends AppCompatActivity {
 
         textColors = results.getTextColors();
 
-        mTrieMap = new TrieMap();
-
         try {
             InputStream inputStream = getApplicationContext().getAssets().open("cs_CZ_openoffice.canon");
             BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
@@ -52,7 +52,7 @@ public class MrizkoDrticActivity extends AppCompatActivity {
 
             while((line = in.readLine()) != null) {
                 StringPair word = StringPair.fromString(line);
-                mTrieMap.put(word.getFirst(), "");
+                //mTrieMap.put(word.getFirst(), "");
             }
         } catch (java.io.IOException e) {
 
@@ -72,7 +72,11 @@ public class MrizkoDrticActivity extends AppCompatActivity {
                     String input = inputBox.getText().toString().replaceAll("[^A-Za-z0-9_]", "").toLowerCase();
 
                     try {
-                        String solutions = grindGrid();
+                        if (!isTrieInitialized) {
+                            initializeTrie((Object)getApplicationContext().getAssets());
+                            isTrieInitialized = true;
+                        }
+                        String solutions = grindGrid(inputBox.getText().toString());
                         results.setText(results.getText().toString() + solutions);
                     } catch (Throwable e) {
                         String solutions = "";
