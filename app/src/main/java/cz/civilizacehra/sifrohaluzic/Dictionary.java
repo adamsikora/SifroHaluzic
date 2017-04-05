@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by Adam on 11. 4. 2016.
- */
 class Dictionary {
     Dictionary(AssetManager manager, String filename, TextView results) {
         mManager = manager;
@@ -104,7 +101,7 @@ class Dictionary {
 
     protected void prepare() {
         mList.clear();
-    };
+    }
 
     protected void matched(String match) {
         mList.add(match);
@@ -121,7 +118,7 @@ class Dictionary {
             }
         }
         mResults.setText("Result: (" + counter + ")\n" + resultStr);
-    };
+    }
 
     private ArrayList<String> mList = new ArrayList<>();
 

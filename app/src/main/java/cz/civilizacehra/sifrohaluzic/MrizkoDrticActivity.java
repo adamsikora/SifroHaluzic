@@ -43,12 +43,10 @@ public class MrizkoDrticActivity extends AppCompatActivity {
         inputBox = (EditText) findViewById(R.id.inputEditText);
         results = (TextView) findViewById(R.id.resultTextView);
 
-        textColors = results.getTextColors();
-
         try {
             InputStream inputStream = getApplicationContext().getAssets().open("cs_CZ_openoffice.canon");
             BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-            String line = null;
+            String line;
 
             while((line = in.readLine()) != null) {
                 StringPair word = StringPair.fromString(line);
@@ -66,7 +64,6 @@ public class MrizkoDrticActivity extends AppCompatActivity {
                     InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-                    results.setTextColor(textColors);
                     results.setText("Result:\n");
 
                     String input = inputBox.getText().toString().replaceAll("[^A-Za-z0-9_]", "").toLowerCase();
@@ -76,10 +73,12 @@ public class MrizkoDrticActivity extends AppCompatActivity {
                             initializeTrie((Object)getApplicationContext().getAssets());
                             isTrieInitialized = true;
                         }
-                        String solutions = grindGrid(inputBox.getText().toString());
+                        long start = System.currentTimeMillis();
+                        String solutions = grindGrid(input);
+                        results.setText("Result: " + String.format("%.3f", 0.001*(System.currentTimeMillis() - start)) + "s\n");
                         results.setText(results.getText().toString() + solutions);
                     } catch (Throwable e) {
-                        String solutions = "";
+
                     }
                 }
             });

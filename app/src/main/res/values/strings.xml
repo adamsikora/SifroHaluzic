@@ -5,4 +5,7 @@
     <string name="debinarizator">Debinarizátor</string>
     <string name="mrizkodrtic">Mřížko Drtič</string>
     <string name="principtrainer">Princip Trainer</string>
+
+    <string name="result">Results:\n</string>
+    <string name="go">Go!</string>
 </resources>

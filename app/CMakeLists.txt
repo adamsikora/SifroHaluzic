@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.6)
 
 set( CMAKE_CXX_STANDARD 14 )
+set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_FLAGS "${CMAKE_FLAGS} -O3")
 
 # Specifies a library name, specifies whether the library is STATIC or
 # SHARED, and provides relative paths to the source code. You can

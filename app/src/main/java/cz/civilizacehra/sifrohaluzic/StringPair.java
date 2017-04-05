@@ -1,13 +1,10 @@
 package cz.civilizacehra.sifrohaluzic;
 
-/**
- * Created by Adam on 12. 4. 2016.
- */
-public class StringPair {
+class StringPair {
     private String first;
     private String second;
 
-    public StringPair(String first, String second) {
+    private StringPair(String first, String second) {
         super();
         this.first = first;
         this.second = second;
@@ -29,17 +26,17 @@ public class StringPair {
         return "(" + first + ", " + second + ")";
     }
 
-    static public StringPair fromString(String input)
+    static StringPair fromString(String input)
     {
-        String[] split = input.split(":");
-        if (split.length == 2) {
-            return new StringPair(split[0], split[1]);
+        int index = input.indexOf(":");
+        if (index > 0 && index < input.length()) {
+            return new StringPair(input.substring(0, index), input.substring(index + 1, input.length()));
         } else {
             return new StringPair(input, input);
         }
     }
 
-    public String getFirst() {
+    String getFirst() {
         return first;
     }
 
@@ -47,7 +44,7 @@ public class StringPair {
         this.first = first;
     }
 
-    public String getSecond() {
+    String getSecond() {
         return second;
     }
 

@@ -186,9 +186,9 @@ public class PrincipTrainerActivity extends AppCompatActivity {
             mOut = mPrincip;
         }
 
-        ArrayList<Integer> list = new ArrayList<Integer>();
+        ArrayList<Integer> list = new ArrayList<>();
         for (int i=1; i<=26; i++) {
-            list.add(new Integer(i));
+            list.add(i);
         }
         Collections.shuffle(list);
         for (int i=0; i<5; i++) {
