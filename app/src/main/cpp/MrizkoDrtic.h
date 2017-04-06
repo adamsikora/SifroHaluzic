@@ -5,7 +5,7 @@
 #include "Trie.h"
 
 struct DrtMrizku {
-    Trie root;
+    Trie2 root;
 
     int getScore(const std::string &s);
 

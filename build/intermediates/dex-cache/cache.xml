@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="9d5598c9bd98a2f65fab7c3dbd75f5d47c6157b8">
+        sha1="41fbede3d304aaad3ab812de029115b6bb9dc1a5">
         <dex dex="C:\Users\Adam\AndroidStudioProjects\SifroHaluzic\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_ee6eb58e5426e46fb847c3eadaf170ae993f5dff\classes.dex" />
     </item>
     <item
@@ -16,7 +16,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
         <dex dex="C:\Users\Adam\AndroidStudioProjects\SifroHaluzic\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_ae405d4d8888c392ec7be80dbf66aafe28052281\classes.dex" />
     </item>
 

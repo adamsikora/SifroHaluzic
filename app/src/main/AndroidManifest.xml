@@ -20,11 +20,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".PresmyslovnikActivity" />
-        <activity
-            android:name=".DebinarizatorActivity"
-            android:screenOrientation="landscape" />
+        <activity android:name=".DebinarizatorActivity" />
         <activity android:name=".PrincipTrainerActivity" />
-        <activity android:name=".MrizkoDrticActivity"></activity>
+        <activity android:name=".MrizkoDrticActivity" />
     </application>
 
 </manifest>

@@ -65,27 +65,21 @@ std::string DrtMrizku::drtMrizku(std::string input)
 
 	Crawler crawler(fourthSize, 4);
 	do {
-		std::vector<std::pair<int, char>> vec;
-		vec.reserve(size);
+		std::vector<char> vec(size*4, 0);
 
 		for (int i = 0; i < fourthSize; ++i) {
 			for (int j = 0; j < 4; ++j) {
 				auto temp = hints[i].ch[j];
-				int index = 128*((j - crawler.indices[i] + 4) % 4) + hints[i].ch[j].second;
-				//if (map.count(index) != 0) {
-				//	std::cout << "wrong map input\n";
-				//}
-				vec.push_back({ index, temp.first });
+				int index = size*((j - crawler.indices[i] + 4) % 4) + temp.second;
+				vec[index] = temp.first;
 			}
 		}
-
-		if (vec.size() + size % 2 != size) {
-			//std::cout << "wrong mapping\n";
-		}
-		std::sort(vec.begin(), vec.end());
 		std::string toCheck;
+		toCheck.reserve(size);
 		for (auto c : vec) {
-			toCheck += c.second;
+			if (c != 0) {
+				toCheck.push_back(c);
+			}
 		}
 		int score = getScore(toCheck);
 		if (results.size() < 100) {
