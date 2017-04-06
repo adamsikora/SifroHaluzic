@@ -38,7 +38,7 @@ public class PrincipTrainerActivity extends AppCompatActivity {
     String mPrincipy[] = {"n", "m", "b", "s"};
     String mPrincip = "n";
     Random mRandom = new Random();
-    int mCurrent = 0;
+    int mCurrent = 0, mLast = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,12 +188,15 @@ public class PrincipTrainerActivity extends AppCompatActivity {
 
         ArrayList<Integer> list = new ArrayList<>();
         for (int i=1; i<=26; i++) {
-            list.add(i);
+            if (i != mLast) {
+                list.add(i);
+            }
         }
         Collections.shuffle(list);
         for (int i=0; i<5; i++) {
             setImage(solutions[i], "principy/" + mSource + "/" + list.get(i) + ".png");
         }
+        mLast = list.get(mCurrent);
 
         InputStream is = null;
         try {
