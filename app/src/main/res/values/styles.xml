@@ -17,7 +17,6 @@
     <style name="result_style">
         <item name="android:layout_width">@dimen/cube_size</item>
         <item name="android:layout_height">@dimen/cube_size</item>
-        <item name="android:text">A</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">32sp</item>
         <item name="android:layout_marginLeft">1sp</item>

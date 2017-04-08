@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,15 +26,26 @@ public class DebinarizatorActivity extends AppCompatActivity {
     LinearLayout rowsLayout;
     ArrayList<View> rows = new ArrayList<View>();
     LayoutInflater mLayoutInflater;
+    RadioGroup mode;
 
     final int bits[] = { R.id.bit1, R.id.bit2, R.id.bit3, R.id.bit4, R.id.bit5 };
     final int results[] = { R.id.result11, R.id.result12, R.id.result21, R.id.result22 };
-    final String alphabet[] = {"?", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+    final String alphabet[] = {"", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_debinarizator);
+
+        mode = (RadioGroup) findViewById(R.id.startRadioGroup);
+
+        mode.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup arg0, int id) {
+                for (View row : rows) {
+                    row.callOnClick();
+                }
+            }
+        });
 
         mLayoutInflater = getLayoutInflater();
 
@@ -63,7 +76,7 @@ public class DebinarizatorActivity extends AppCompatActivity {
     }
 
     protected String getLetter(int i) {
-        if (i > 26) {
+        if (i < 0 || i > 26) {
             i = 0;
         }
         return alphabet[i];
@@ -79,6 +92,42 @@ public class DebinarizatorActivity extends AppCompatActivity {
             view.setTag(0);
             view.setImageResource(getResources().getIdentifier("@android:drawable/alert_light_frame", null, null));
         }
+
+        layout.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int values[] = new int[5];
+                for (int k = 0; k < 5; ++k) {
+                    ImageView view = (ImageView) layout.findViewById(bits[k]);
+                    int value = (int) view.getTag();
+                    values[k] = value;
+                }
+
+                int down = 0, up = 0;
+                for (int k = 0; k < 5; ++k) {
+                    down *= 2;
+                    down += values[k];
+                }
+                for (int k = 4; k >= 0; --k) {
+                    up *= 2;
+                    up += values[k];
+                }
+                int offset = mode.getCheckedRadioButtonId() == R.id.rbtn0 ? 1 : 0;
+
+                if (up >= 0 && up <= 31) {
+                    TextView text = (TextView) layout.findViewById(results[0]);
+                    text.setText(getLetter(up + offset));
+                    text = (TextView) layout.findViewById(results[1]);
+                    text.setText(getLetter(31 - up + offset));
+                }
+                if (down >= 0 && down <= 31) {
+                    TextView text = (TextView) layout.findViewById(results[2]);
+                    text.setText(getLetter(down + offset));
+                    text = (TextView) layout.findViewById(results[3]);
+                    text.setText(getLetter(31 - down + offset));
+                }
+            }
+        });
+
         for (int j = 0; j < 5; ++j) {
             final ImageView view = (ImageView) layout.findViewById(bits[j]);
             view.setOnClickListener(new View.OnClickListener()
@@ -94,48 +143,9 @@ public class DebinarizatorActivity extends AppCompatActivity {
                         view.setImageResource(getResources().getIdentifier("@android:drawable/alert_light_frame", null, null));
                     } else if (counter == 1) {
                         view.setImageResource(getResources().getIdentifier("@android:drawable/alert_dark_frame", null, null));
-                    }/* else {
-                        view.setImageResource(getResources().getIdentifier("@android:drawable/ic_menu_help", null, null));
-                    }*/
+                    }
 
-                    boolean compute = true;
-                    int values[] = new int[5];
-                    for (int k = 0; k < 5; ++k) {
-                        ImageView view = (ImageView) layout.findViewById(bits[k]);
-                        int value = (int) view.getTag();
-                        values[k] = value;
-                        if (value == 2) {
-                            compute = false;
-                        }
-                    }
-                    if (compute) {
-                        int down = 0, up = 0;
-                        for (int k = 0; k < 5; ++k) {
-                            down *= 2;
-                            down += values[k];
-                        }
-                        for (int k = 4; k >= 0; --k) {
-                            up *= 2;
-                            up += values[k];
-                        }
-                        if (up >= 0 && up <= 31) {
-                            TextView text = (TextView) layout.findViewById(results[0]);
-                            text.setText(getLetter(up));
-                            text = (TextView) layout.findViewById(results[1]);
-                            text.setText(getLetter(31 - up));
-                        }
-                        if (down >= 0 && down <= 31) {
-                            TextView text = (TextView) layout.findViewById(results[2]);
-                            text.setText(getLetter(down));
-                            text = (TextView) layout.findViewById(results[3]);
-                            text.setText(getLetter(31 - down));
-                        }
-                    } else {
-                        for (int k = 0; k < 4; ++k) {
-                            TextView text = (TextView) layout.findViewById(results[k]);
-                            text.setText("");
-                        }
-                    }
+                    layout.callOnClick();
                 }
             });
         }
