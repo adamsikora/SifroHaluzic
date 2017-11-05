@@ -11,34 +11,26 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnCount="3">
+        android:columnCount="1">
 
         <TextView
             android:id="@+id/Presmyslovnik"
-            android:layout_width="@dimen/main_selection_size"
-            android:layout_height="@dimen/main_selection_size"
-            android:clickable="true"
+            style="@style/category_style"
             android:text="@string/presmyslovnik" />
 
         <TextView
             android:id="@+id/Debinarizator"
-            android:layout_width="@dimen/main_selection_size"
-            android:layout_height="@dimen/main_selection_size"
-            android:clickable="true"
+            style="@style/category_style"
             android:text="@string/debinarizator" />
 
         <TextView
             android:id="@+id/MrizkoDrtic"
-            android:layout_width="@dimen/main_selection_size"
-            android:layout_height="@dimen/main_selection_size"
-            android:clickable="true"
+            style="@style/category_style"
             android:text="@string/mrizkodrtic" />
 
         <TextView
             android:id="@+id/PrincipTrainer"
-            android:layout_width="@dimen/main_selection_size"
-            android:layout_height="@dimen/main_selection_size"
-            android:clickable="true"
+            style="@style/category_style"
             android:text="@string/principtrainer" />
     </GridLayout>
 </RelativeLayout>
