@@ -1,8 +1,6 @@
 package cz.civilizacehra.sifrohaluzic;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +13,6 @@ import android.widget.TextView;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.regex.PatternSyntaxException;
 
 public class MrizkoDrticActivity extends AppCompatActivity {
 
