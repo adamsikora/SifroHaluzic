@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView presmyslovnik, debinarizator, mrizkodrtic, principtrainer;
+    TextView presmyslovnik, debinarizator, deternarizator, mrizkodrtic, principtrainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,13 +17,13 @@ public class MainActivity extends AppCompatActivity {
 
         presmyslovnik = (TextView)findViewById(R.id.Presmyslovnik);
         debinarizator = (TextView)findViewById(R.id.Debinarizator);
+        deternarizator = (TextView)findViewById(R.id.Deternarizator);
         mrizkodrtic = (TextView)findViewById(R.id.MrizkoDrtic);
         principtrainer = (TextView)findViewById(R.id.PrincipTrainer);
 
         presmyslovnik.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(MainActivity.this, PresmyslovnikActivity.class);
-                //myIntent.putExtra("key", value); //Optional parameters
                 MainActivity.this.startActivity(myIntent);
             }
         });
@@ -31,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
         debinarizator.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(MainActivity.this, DebinarizatorActivity.class);
+                MainActivity.this.startActivity(myIntent);
+            }
+        });
+
+        deternarizator.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this, DeternarizatorActivity.class);
                 MainActivity.this.startActivity(myIntent);
             }
         });

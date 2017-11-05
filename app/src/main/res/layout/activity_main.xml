@@ -24,6 +24,11 @@
             android:text="@string/debinarizator" />
 
         <TextView
+            android:id="@+id/Deternarizator"
+            style="@style/category_style"
+            android:text="@string/deternarizator" />
+
+        <TextView
             android:id="@+id/MrizkoDrtic"
             style="@style/category_style"
             android:text="@string/mrizkodrtic" />
