@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,16 +18,16 @@ class Dictionary {
         mResults = results;
     }
 
-    public void findResults(String input, boolean subset, boolean exact, boolean superset, boolean regexp, int minLength, int maxLength) {
+    public void findResults(String input, boolean subset, boolean exact, boolean superset, boolean hamming, boolean regexp, int minLength, int maxLength) {
 
         prepare();
 
-        findResults_impl(input, subset, exact, superset, regexp, minLength, maxLength);
+        findResults_impl(input, subset, exact, superset, hamming, regexp, minLength, maxLength);
 
-        conclude();
+        conclude(hamming);
     }
 
-    void findResults_impl(String input, boolean subset, boolean exact, boolean superset, boolean regexp, int minLength, int maxLength) {
+    void findResults_impl(String input, boolean subset, boolean exact, boolean superset, boolean hamming, boolean regexp, int minLength, int maxLength) {
 
         Pattern pattern;
         Matcher matcher;
@@ -52,21 +53,27 @@ class Dictionary {
                 StringPair word = StringPair.fromString(line);
                 String first = word.getFirst();
 
-                if (subset && first.length() > input.length()) {
-                    continue;
-                }
-                if (superset && first.length() < input.length()) {
-                    continue;
-                }
-                if (exact && first.length() != input.length()) {
-                    continue;
-                } else if (first.length() < minLength || first.length() > maxLength) {
+                if ((subset && first.length() > input.length())
+                        || (superset && first.length() < input.length())
+                        ||(exact && first.length() != input.length())
+                        ||(hamming && first.length() != input.length())
+                        ||(first.length() < minLength || first.length() > maxLength)) {
                     continue;
                 }
                 if (regexp) {
                     matcher = pattern.matcher(first);
                     if (matcher.matches()) {
                         matched(word.getSecond());
+                    }
+                } else if (hamming) {
+                    int counter = 0;
+                    for (int i = 0; i < first.length(); ++i) {
+                        if (first.charAt(i) != input.charAt(i)) {
+                            ++counter;
+                        }
+                    }
+                    if (counter < 4) {
+                        matched("(" + counter + ") " + word.getSecond());
                     }
                 } else {
                     int[] chars = new int[26];
@@ -107,9 +114,12 @@ class Dictionary {
         mList.add(match);
     }
 
-    protected void conclude() {
+    protected void conclude(boolean sort) {
         String resultStr = "";
         int counter = 0;
+        if (sort) {
+            Collections.sort(mList);
+        }
         for (String point : mList) {
             ++counter;
             resultStr += point + "\n";

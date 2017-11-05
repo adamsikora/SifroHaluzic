@@ -43,19 +43,19 @@ class MapDictionary extends Dictionary {
     private ArrayList<Point> mSortedResults = new ArrayList<Point>();
 
     @Override
-    public void findResults(String input, boolean subset, boolean exact, boolean superset, boolean regexp, int minLength, int maxLength) {
+    public void findResults(String input, boolean subset, boolean exact, boolean superset, boolean hamming, boolean regexp, int minLength, int maxLength) {
 
         prepare();
 
         setSuffix("");
-        findResults_impl(input, subset, exact, superset, regexp, minLength, maxLength);
+        findResults_impl(input, subset, exact, superset, hamming, regexp, minLength, maxLength);
         if (mSvjz) {
             for (String s : mWorldSides) {
-                processWithWorldSide(input, s, subset, exact, superset, regexp, minLength, maxLength);
+                processWithWorldSide(input, s, subset, exact, superset, hamming, regexp, minLength, maxLength);
             }
         }
 
-        conclude();
+        conclude(false);
     }
 
     @Override
@@ -85,7 +85,7 @@ class MapDictionary extends Dictionary {
     }
 
     @Override
-    protected void conclude() {
+    protected void conclude(boolean sort) {
         String resultStr = "";
         int counter = 0;
         Collections.sort(mSortedResults);
@@ -107,7 +107,7 @@ class MapDictionary extends Dictionary {
         }
     }
 
-    private void processWithWorldSide(String input, String s, boolean subset, boolean exact, boolean superset, boolean regexp, int minLength, int maxLength) {
+    private void processWithWorldSide(String input, String s, boolean subset, boolean exact, boolean superset, boolean hamming, boolean regexp, int minLength, int maxLength) {
         String arr[] = s.split("");
         boolean contains = true;
         for (String c : arr) {
@@ -121,7 +121,7 @@ class MapDictionary extends Dictionary {
                 modified = modified.replaceFirst(c, "");
             }
             setSuffix(s);
-            findResults_impl(modified, subset, exact, superset, regexp, minLength, maxLength);
+            findResults_impl(modified, subset, exact, superset, hamming, regexp, minLength, maxLength);
         }
     }
 
