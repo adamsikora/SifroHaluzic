@@ -24,6 +24,7 @@
         <activity android:name=".DeternarizatorActivity" />
         <activity android:name=".PrincipTrainerActivity" />
         <activity android:name=".MrizkoDrticActivity" />
+        <activity android:name=".PrincipReaderActivity"></activity>
     </application>
 
 </manifest>

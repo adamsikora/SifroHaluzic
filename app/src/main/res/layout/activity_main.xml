@@ -37,5 +37,10 @@
             android:id="@+id/PrincipTrainer"
             style="@style/category_style"
             android:text="@string/principtrainer" />
+
+        <TextView
+            android:id="@+id/PrincipReader"
+            style="@style/category_style"
+            android:text="@string/principreader" />
     </GridLayout>
 </RelativeLayout>
