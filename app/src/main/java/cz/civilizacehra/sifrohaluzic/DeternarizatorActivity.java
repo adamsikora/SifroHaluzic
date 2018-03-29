@@ -2,6 +2,8 @@ package cz.civilizacehra.sifrohaluzic;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.Checkable;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 public class DeternarizatorActivity extends DebaseatorActivity {
     Switch direction;
+    CheckBox ch;
     int mapping[][] = {
             { 0, 1, 2 },
             { 0, 2, 1 },
@@ -28,6 +31,14 @@ public class DeternarizatorActivity extends DebaseatorActivity {
         commonPostCreate(3, 3, R.layout.ternaryrow);
         direction = (Switch) findViewById(R.id.directionSwitch);
         direction.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
+                for (View row : rows) {
+                    row.callOnClick();
+                }
+            }
+        });
+        ch = (CheckBox) findViewById(R.id.chCheckBox);
+        ch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
                 for (View row : rows) {
                     row.callOnClick();
@@ -60,7 +71,8 @@ public class DeternarizatorActivity extends DebaseatorActivity {
             }
             if (value >= 0 && value <= mBaseMax) {
                 TextView text = (TextView) layout.findViewById(results[i]);
-                text.setText(getLetter(value + offset));
+                String letter = ch.isChecked() ? getChLetter(value + offset) : getLetter(value + offset);
+                text.setText(letter);
             }
         }
 

@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class PrincipTrainerActivity extends AppCompatActivity {
 
-    ImageView principy[] = new ImageView[4];
+    ImageView principy[] = new ImageView[6];
     Switch invertSwitch;
 
     ImageView imageView;
@@ -35,7 +35,7 @@ public class PrincipTrainerActivity extends AppCompatActivity {
     int mDefaultColor = 0xFFBBBBBB;
 
     boolean mInvert;
-    String mPrincipy[] = {"n", "m", "b", "s"};
+    String mPrincipy[] = {"n", "m", "b", "s", "bin", "t"};
     String mPrincip = "n";
     Random mRandom = new Random();
     int mCurrent = 0, mLast = 0;
@@ -49,8 +49,10 @@ public class PrincipTrainerActivity extends AppCompatActivity {
         principy[1] = (ImageView)findViewById(R.id.mImage);
         principy[2] = (ImageView)findViewById(R.id.bImage);
         principy[3] = (ImageView)findViewById(R.id.sImage);
+        principy[4] = (ImageView)findViewById(R.id.binImage);
+        principy[5] = (ImageView)findViewById(R.id.tImage);
 
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < mPrincipy.length; ++i) {
             final int ii = i;
             if (i == 0) {
                 principy[i].setBackgroundColor(mHihglightColor);
@@ -60,7 +62,7 @@ public class PrincipTrainerActivity extends AppCompatActivity {
             principy[i].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     mPrincip = mPrincipy[ii];
-                    for (int i = 0; i < 4; ++i) {
+                    for (int i = 0; i < mPrincipy.length; ++i) {
                         if (i == ii) {
                             principy[i].setBackgroundColor(mHihglightColor);
                         } else {
@@ -151,6 +153,8 @@ public class PrincipTrainerActivity extends AppCompatActivity {
         setImage(principy[1], "principy/m/16.png");
         setImage(principy[2], "principy/b/9.png");
         setImage(principy[3], "principy/s/13.png");
+        setImage(principy[4], "principy/bin/21.png");
+        setImage(principy[5], "principy/t/15.png");
 
         newLetter();
     }

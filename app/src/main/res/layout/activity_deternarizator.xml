@@ -101,6 +101,8 @@
             android:id="@+id/rbtn1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/directionSwitch"
             android:layout_weight="1"
             android:text="1" />
 
@@ -117,9 +119,18 @@
         android:id="@+id/directionSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="Dir "
+        android:layout_alignParentEnd="true"
         android:layout_below="@+id/startRadioGroup"
-        android:layout_alignParentEnd="true" />
+        android:checked="true"
+        android:text="Dir " />
+
+    <CheckBox
+        android:id="@+id/chCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/startRadioGroup"
+        android:layout_toStartOf="@+id/directionSwitch"
+        android:checked="false"
+        android:text="Ch" />
 
 </RelativeLayout>

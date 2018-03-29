@@ -1,5 +1,5 @@
 #include <sstream>
-
+#include <cstring>
 #include <set>
 #include <map>
 
@@ -11,7 +11,7 @@ int DrtMrizku::getScore(const std::string& s)
 {
 	int result = 0;
 	char start[256];
-	memcpy(start, s.c_str(), s.size());
+	std::memcpy(start, s.c_str(), s.size());
 	for (unsigned i = 0; i < s.size(); ++i) {
 		//int plus = 0;
 		root.countContainments(start + i, start + i, start + s.size(), result);

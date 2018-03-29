@@ -49,30 +49,27 @@
             android:id="@+id/sImage"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:padding="4dp"
             app:srcCompat="@android:drawable/alert_light_frame" />
 
-        <LinearLayout
-            android:layout_width="67dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <ImageView
+            android:id="@+id/binImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:padding="4dp"
+            app:srcCompat="@android:drawable/alert_light_frame" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Invert"
-                android:textAlignment="center" />
-
-            <Switch
-                android:id="@+id/invertSwitch"
-                android:layout_width="56dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:checked="false" />
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/tImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:padding="4dp"
+            app:srcCompat="@android:drawable/alert_light_frame" />
 
     </LinearLayout>
 
@@ -87,6 +84,32 @@
         android:cropToPadding="false"
         android:padding="10dp"
         app:srcCompat="@android:drawable/alert_light_frame" />
+
+    <LinearLayout
+        android:id="@+id/invertLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/answerLayout"
+        android:layout_below="@+id/principleLayout"
+        android:layout_centerInParent="false"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Invert"
+            android:textAlignment="center" />
+
+        <Switch
+            android:id="@+id/invertSwitch"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:checked="false" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/answerLayout"

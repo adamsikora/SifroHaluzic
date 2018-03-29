@@ -34,6 +34,7 @@ public class DebaseatorActivity extends AppCompatActivity {
     int results[];
 
     final String alphabet[] = {"", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+    final String chAlphabet[] = {"", "A", "B", "C", "D", "E", "F", "G", "H", "CH", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +90,13 @@ public class DebaseatorActivity extends AppCompatActivity {
             i = 0;
         }
         return alphabet[i];
+    }
+
+    protected final String getChLetter(int i) {
+        if (i < 0 || i > 27) {
+            i = 0;
+        }
+        return chAlphabet[i];
     }
 
     protected final void addRow() {
