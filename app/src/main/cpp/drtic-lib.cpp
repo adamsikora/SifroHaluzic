@@ -31,7 +31,7 @@ Java_cz_civilizacehra_sifrohaluzic_MrizkoDrticActivity_initializeTrie(JNIEnv* en
 
         size_t assetLength = AAsset_getLength(testAsset);
 
-        char* buffer = (char*) malloc(assetLength + 1);
+        char* buffer = new char[assetLength + 1];
         AAsset_read(testAsset, buffer, assetLength);
         buffer[assetLength] = 0;
 
@@ -47,6 +47,6 @@ Java_cz_civilizacehra_sifrohaluzic_MrizkoDrticActivity_initializeTrie(JNIEnv* en
         }
 
         AAsset_close(testAsset);
-        free(buffer);
+        delete[] buffer;
     }
 }
