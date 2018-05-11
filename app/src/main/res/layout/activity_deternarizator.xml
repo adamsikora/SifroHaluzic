@@ -7,19 +7,25 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     tools:context="cz.civilizacehra.sifrohaluzic.DebinarizatorActivity" >
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/combinationLayout"
-        android:baselineAligned="false"
-        android:layout_above="@+id/scrollView"
-        android:layout_alignStart="@+id/scrollView">
+    <RelativeLayout
+        android:id="@+id/legendLayout"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_toRightOf="@+id/numberPicker"
+        android:background="@color/colorPrimary">
+
+        <Switch
+            android:id="@+id/modeSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="Value/Order" />
 
         <LinearLayout
             android:id="@+id/interpretationLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/modeSwitch"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -54,7 +60,58 @@
                 app:srcCompat="@drawable/ternary6" />
 
         </LinearLayout>
-    </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/startRadioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:checkedButton="@+id/rbtn1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/rgTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Start" />
+
+            <RadioButton
+                android:id="@+id/rbtn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1" />
+
+            <RadioButton
+                android:id="@+id/rbtn0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0" />
+
+        </RadioGroup>
+
+        <Switch
+            android:id="@+id/directionSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/startRadioGroup"
+            android:layout_alignStart="@+id/startRadioGroup"
+            android:checked="true"
+            android:text="Dir " />
+
+        <CheckBox
+            android:id="@+id/chCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/directionSwitch"
+            android:layout_alignStart="@+id/directionSwitch"
+            android:checked="false"
+            android:text="Ch" />
+
+    </RelativeLayout>
 
     <NumberPicker
         android:id="@+id/numberPicker"
@@ -71,8 +128,8 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_toEndOf="@+id/numberPicker"
-        android:layout_below="@+id/directionSwitch">
+        android:layout_below="@+id/legendLayout"
+        android:layout_toEndOf="@+id/numberPicker">
 
         <LinearLayout
             android:id="@+id/rowsLayout"
@@ -80,57 +137,5 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
-
-    <RadioGroup
-        android:id="@+id/startRadioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:checkedButton="@+id/rbtn1"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/rgTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Start" />
-
-        <RadioButton
-            android:id="@+id/rbtn1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/directionSwitch"
-            android:layout_weight="1"
-            android:text="1" />
-
-        <RadioButton
-            android:id="@+id/rbtn0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-    </RadioGroup>
-
-    <Switch
-        android:id="@+id/directionSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/startRadioGroup"
-        android:checked="true"
-        android:text="Dir " />
-
-    <CheckBox
-        android:id="@+id/chCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/startRadioGroup"
-        android:layout_toStartOf="@+id/directionSwitch"
-        android:checked="false"
-        android:text="Ch" />
 
 </RelativeLayout>

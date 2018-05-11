@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -23,7 +22,7 @@ public class DebaseatorActivity extends AppCompatActivity {
     LinearLayout rowsLayout;
     ArrayList<View> rows = new ArrayList<>();
     LayoutInflater mLayoutInflater;
-    RadioGroup mode;
+    RadioGroup alphabetStart;
 
     int mBase = 0;
     int mBaseLength = 0;
@@ -47,9 +46,9 @@ public class DebaseatorActivity extends AppCompatActivity {
         mBaseMax = (int)Math.pow(base, baseLength) - 1;
 
         mRowLayout = rowLayout;
-        mode = (RadioGroup) findViewById(R.id.startRadioGroup);
+        alphabetStart = (RadioGroup) findViewById(R.id.startRadioGroup);
 
-        mode.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        alphabetStart.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup arg0, int id) {
                 for (View row : rows) {
                     row.callOnClick();

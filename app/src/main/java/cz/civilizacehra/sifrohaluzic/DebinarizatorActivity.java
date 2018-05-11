@@ -34,7 +34,7 @@ public class DebinarizatorActivity extends DebaseatorActivity {
             up *= mBase;
             up += values[k];
         }
-        int offset = mode.getCheckedRadioButtonId() == R.id.rbtn0 ? 1 : 0;
+        int offset = alphabetStart.getCheckedRadioButtonId() == R.id.rbtn0 ? 1 : 0;
 
         if (up >= 0 && up <= mBaseMax) {
             TextView text = (TextView) layout.findViewById(results[0]);

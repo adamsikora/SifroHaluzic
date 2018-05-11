@@ -3,7 +3,6 @@ package cz.civilizacehra.sifrohaluzic;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.Checkable;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -11,8 +10,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 public class DeternarizatorActivity extends DebaseatorActivity {
+    Switch mode;
     Switch direction;
     CheckBox ch;
+    ImageView images[];
     int mapping[][] = {
             { 0, 1, 2 },
             { 0, 2, 1 },
@@ -29,6 +30,39 @@ public class DeternarizatorActivity extends DebaseatorActivity {
         bits = new int[]{ R.id.tern1, R.id.tern2, R.id.tern3 };
         results = new int[]{ R.id.result1, R.id.result2, R.id.result3, R.id.result4, R.id.result5, R.id.result6 };
         commonPostCreate(3, 3, R.layout.ternaryrow);
+
+        images = new ImageView[]{
+                (ImageView) findViewById(R.id.interpretation1),
+                (ImageView) findViewById(R.id.interpretation2),
+                (ImageView) findViewById(R.id.interpretation3),
+                (ImageView) findViewById(R.id.interpretation4),
+                (ImageView) findViewById(R.id.interpretation5),
+                (ImageView) findViewById(R.id.interpretation6)
+        };
+
+        mode = (Switch) findViewById(R.id.modeSwitch);
+        mode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
+                if (isChecked) {
+                    images[0].setImageResource(R.drawable.ternaryorder1);
+                    images[1].setImageResource(R.drawable.ternaryorder2);
+                    images[2].setImageResource(R.drawable.ternaryorder3);
+                    images[3].setImageResource(R.drawable.ternaryorder4);
+                    images[4].setImageResource(R.drawable.ternaryorder5);
+                    images[5].setImageResource(R.drawable.ternaryorder6);
+                } else {
+                    images[0].setImageResource(R.drawable.ternary1);
+                    images[1].setImageResource(R.drawable.ternary2);
+                    images[2].setImageResource(R.drawable.ternary3);
+                    images[3].setImageResource(R.drawable.ternary4);
+                    images[4].setImageResource(R.drawable.ternary5);
+                    images[5].setImageResource(R.drawable.ternary6);
+                }
+                for (View row : rows) {
+                    row.callOnClick();
+                }
+            }
+        });
         direction = (Switch) findViewById(R.id.directionSwitch);
         direction.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
@@ -61,13 +95,20 @@ public class DeternarizatorActivity extends DebaseatorActivity {
         } else {
             iterate = new int[]{ 0, 1, 2 };
         }
-        int offset = mode.getCheckedRadioButtonId() == R.id.rbtn0 ? 1 : 0;
+        int offset = alphabetStart.getCheckedRadioButtonId() == R.id.rbtn0 ? 1 : 0;
 
         for (int i = 0; i < 6; ++i) {
             int value = 0;
-            for (int j : iterate) {
-                value *= mBase;
-                value += mapping[i][values[j]];
+            if (mode.isChecked()) {
+                for (int j : mapping[i]) {
+                    value *= mBase;
+                    value += values[j];
+                }
+            } else {
+                for (int j : iterate) {
+                    value *= mBase;
+                    value += mapping[i][values[j]];
+                }
             }
             if (value >= 0 && value <= mBaseMax) {
                 TextView text = (TextView) layout.findViewById(results[i]);
@@ -85,7 +126,7 @@ public class DeternarizatorActivity extends DebaseatorActivity {
             up *= mBase;
             up += values[k];
         }
-        int offset = mode.getCheckedRadioButtonId() == R.id.rbtn0 ? 1 : 0;
+        int offset = alphabetStart.getCheckedRadioButtonId() == R.id.rbtn0 ? 1 : 0;
 
         if (up >= 0 && up <= mBaseMax) {
             TextView text = (TextView) layout.findViewById(results[0]);
